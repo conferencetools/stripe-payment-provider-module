@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ConferenceTools\StripePaymentProvider\PaymentProvider\Webhook;
+namespace ConferenceTools\StripePaymentProvider\Webhook;
 
 
 use Cartalyst\Stripe\Stripe;

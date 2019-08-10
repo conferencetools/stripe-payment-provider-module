@@ -14,6 +14,11 @@ return [
     'router' => [
         'routes' => require __DIR__ . '/routes.config.php',
     ],
+    'payment_providers' => [
+        'factories' => [
+            \ConferenceTools\StripePaymentProvider\PaymentProvider\StripePaymentProvider::class => \ConferenceTools\StripePaymentProvider\PaymentProvider\StripePaymentProviderFactory::class,
+        ],
+    ],
     'service_manager' => [
         'factories' => [
             \Cartalyst\Stripe\Stripe::class => \ConferenceTools\StripePaymentProvider\Service\StripeFactory::class,

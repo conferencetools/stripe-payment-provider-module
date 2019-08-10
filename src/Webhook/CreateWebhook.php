@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ConferenceTools\StripePaymentProvider\PaymentProvider\Webhook;
+namespace ConferenceTools\StripePaymentProvider\Webhook;
 
 
 class CreateWebhook
