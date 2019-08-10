@@ -1,0 +1,26 @@
+{
+  "name": "conferencetools/stripe-payment-provider-module",
+  "description": "Provides a stripe payment provider for ticket booking",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "require": {
+    "php": "~7.2",
+    "roave/security-advisories": "dev-master",
+    "neilime/zf2-twb-bundle": "^3.0",
+    "zendframework/zend-mvc": "^3.0.1",
+    "zendframework/zend-form": "^2.12",
+    "zendframework/zend-i18n": "^2.9@dev",
+    "phactor/phactor": "dev-master",
+    "cartalyst/stripe": "~2.0",
+    "zendframework/zend-mvc-plugin-flashmessenger": "^1.1@dev",
+    "zendframework/zend-math": "^3.0",
+    "ext-json": "*",
+    "conferencetools/admin-module": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "ConferenceTools\\StripePaymentProvider\\": "src"
+    }
+  }
+}

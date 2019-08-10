@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'conferencetools' => [
+        'payment_providers' => [
+            'stripe' => [
+                'secret_key' => '',
+                'publishable_key' => '',
+            ]
+        ]
+    ]
+];
