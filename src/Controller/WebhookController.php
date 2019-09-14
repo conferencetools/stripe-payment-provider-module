@@ -3,20 +3,45 @@
 namespace ConferenceTools\StripePaymentProvider\Controller;
 
 use ConferenceTools\Attendance\Domain\Payment\Command\ConfirmPayment;
+use ConferenceTools\StripePaymentProvider\Webhook\CreateWebhook;
 use ConferenceTools\StripePaymentProvider\Webhook\Webhook;
 use ConferenceTools\StripePaymentProvider\Service\StripeSignatureValidator;
 use Phactor\ReadModel\Repository;
 use Phactor\Zend\ControllerPlugin\MessageBus;
+use Zend\Form\Form;
 use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use ConferenceTools\StripePaymentProvider\Form\Webhook as WebhookForm;
 
 /**
  * @method MessageBus messageBus()
  * @method Repository repository(string $className)
+ * @method Form form($name, $options = [])
  */
 class WebhookController extends AbstractActionController
 {
+    public function createAction()
+    {
+        $form = $this->form(WebhookForm::class);
+
+        if ($this->getRequest()->isPost()) {
+            $form->setData($this->params()->fromPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $command = new CreateWebhook('stripe-payment-provider/webhooks/payment-intent-success', $data['url']);
+                $this->messageBus()->fire($command);
+
+                return $this->redirect()->toRoute('admin');
+            }
+        }
+
+        $viewModel = new ViewModel(['form' => $form, 'action' => 'Create stripe webhook']);
+        $viewModel->setTemplate('attendance/admin/form');
+        return $viewModel;
+    }
+
     public function confirmPaymentAction()
     {
         //Called by stripe

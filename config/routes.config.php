@@ -2,7 +2,6 @@
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Placeholder;
-use Zend\Router\Http\Segment;
 
 return [
     'stripe-payment-provider' => [
@@ -18,6 +17,29 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
+                    'admin' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/admin',
+                            'defaults' => [
+                                'requiresPermission' => 'stripe-config',
+                                'layout' => 'admin/layout',
+                            ]
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'create' => [
+                                'type' => Literal::class,
+                                'options' => [
+                                    'route' => '/create',
+                                    'defaults' => [
+                                        'action' => 'create',
+                                        'controller' => \ConferenceTools\StripePaymentProvider\Controller\WebhookController::class,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                     'payment-intent-success' => [
                         'type' => Literal::class,
                         'options' => [

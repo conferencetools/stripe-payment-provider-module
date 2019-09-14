@@ -1,16 +1,25 @@
 <?php
 
 return [
-    /*'auth' => [
+    'auth' => [
         'permissions' => [
             'stripe-config' => 'Stripe config',
         ]
-    ],*/
+    ],
     'controllers' => require __DIR__ . '/controllers.config.php',
     'doctrine' => require __DIR__ . '/doctrine.config.php',
     'message_handlers' => require __DIR__ . '/message_handlers.config.php',
     'message_subscriptions' => require __DIR__ . '/message_subscriptions.config.php',
-    //'navigation' => require __DIR__ . '/navigation.config.php',
+    'navigation' => [
+        'default' =>
+            [
+                [
+                    'label' => 'Stripe Webhook',
+                    'route' => 'stripe-payment-provider/webhooks/admin/create',
+                    'permission' => 'stripe-config'
+                ]
+            ]
+    ],
     'router' => [
         'routes' => require __DIR__ . '/routes.config.php',
     ],
