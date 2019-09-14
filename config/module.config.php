@@ -7,6 +7,20 @@ return [
         ]
     ],
     'controllers' => require __DIR__ . '/controllers.config.php',
+    'conferencetools' => [
+        'payment_providers' => [
+            'stripe' => [
+                'provider_service' => \ConferenceTools\StripePaymentProvider\PaymentProvider\StripePaymentProvider::class,
+                'payment_type' => [
+                    'name' => 'stripe',
+                    'timeout' => 1800,
+                    'manual_confirmation' => false,
+                ],
+                'secret_key' => '',
+                'publishable_key' => '',
+            ]
+        ]
+    ],
     'doctrine' => require __DIR__ . '/doctrine.config.php',
     'message_handlers' => require __DIR__ . '/message_handlers.config.php',
     'message_subscriptions' => require __DIR__ . '/message_subscriptions.config.php',
