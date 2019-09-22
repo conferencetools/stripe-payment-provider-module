@@ -88,7 +88,7 @@ $this->headLink()->appendStylesheet('/css/card.css');
 </div>
 <script>
 
-    var stripe = Stripe(<?=$this->stripeKey()?>);
+    var stripe = Stripe('<?=$this->stripeKey()?>');
     var elements = stripe.elements();
     var card = elements.create('card');
     var clientSecret = '<?=$this->stripePayment->getClientSecret()?>';
