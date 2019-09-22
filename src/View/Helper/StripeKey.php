@@ -22,6 +22,6 @@ class StripeKey extends AbstractHelper
 
     public function __invoke()
     {
-        return sprintf("Stripe.setPublishableKey('%s');", $this->publishableKey);
+        return (string) $this->publishableKey;
     }
 }
