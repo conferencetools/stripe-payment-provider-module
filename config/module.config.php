@@ -55,7 +55,7 @@ return [
     ],
     'view_helpers' => [
         'factories' => [
-            'stripeKey' => \ConferenceTools\Attendance\View\Helper\StripeKeyFactory::class,
+            'stripeKey' => \ConferenceTools\StripePaymentProvider\View\Helper\StripeKeyFactory::class,
         ],
     ],
 ];
