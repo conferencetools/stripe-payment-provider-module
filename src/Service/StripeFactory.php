@@ -12,6 +12,6 @@ class StripeFactory implements FactoryInterface
     {
         $config = $container->get('Config');
         Stripe::disableAmountConverter();
-        return Stripe::make($config['zfr_stripe']['secret_key']);
+        return Stripe::make($config['conferencetools']['payment_providers']['stripe']['secret_key']);
     }
 }
